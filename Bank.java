@@ -1,29 +1,21 @@
+import java.util.HashMap;
+
 public class Bank {
+    HashMap<Integer, Account> accounts = new HashMap<>();
 
-    Account acc;
-
-    void createAccount(int no, String name, double bal) {
-        acc = new Account(no, name, bal);
-        System.out.println("Account Created Successfully");
+    void create(Account a) {
+        accounts.put(a.accNo, a);
+        System.out.println("Account Created!");
     }
 
-    void deposit(double amt) {
-        acc.deposit(amt);
-    }
-
-    void withdraw(double amt) {
-        acc.withdraw(amt);
-    }
-
-    void checkBalance() {
-        acc.display();
-    }
-
-    boolean accountExists() {
-        if (acc == null) {
-            System.out.println("Create Account First");
-            return false;
+    void deposit(int no, double amt) {
+        Account a = accounts.get(no);
+        if (a != null) {
+            a.balance += amt;
+            System.out.println("Deposit Successful!");
+            System.out.println("Balance: " + a.balance);
+        } else {
+            System.out.println("Account Not Found");
         }
-        return true;
     }
 }

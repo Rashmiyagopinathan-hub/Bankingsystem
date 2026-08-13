@@ -5,58 +5,36 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         Bank bank = new Bank();
-        int choice;
 
-        do {
-            System.out.println("\n===== BANK MANAGEMENT SYSTEM =====");
-            System.out.println("1.Create Account");
-            System.out.println("2.Deposit");
-            System.out.println("3.Withdraw");
-            System.out.println("4.Check Balance");
-            System.out.println("5.Exit");
-            System.out.print("Enter Choice: ");
-            choice = sc.nextInt();
+        System.out.println("=== Banking System ===");
+        System.out.println("1. Create Account");
+        System.out.println("2. Deposit");
+        System.out.print("Enter choice: ");
+        int choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    System.out.print("Account No: ");
-                    int no = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("Name: ");
-                    String name = sc.nextLine();
-                    System.out.print("Initial Balance: ");
-                    double bal = sc.nextDouble();
-                    bank.createAccount(no, name, bal);
-                    break;
+        if (choice == 1) {
+            System.out.print("Account Number: ");
+            int no = sc.nextInt();
+            sc.nextLine();
 
-                case 2:
-                    if (bank.accountExists()) {
-                        System.out.print("Deposit Amount: ");
-                        bank.deposit(sc.nextDouble());
-                    }
-                    break;
+            System.out.print("Name: ");
+            String name = sc.nextLine();
 
-                case 3:
-                    if (bank.accountExists()) {
-                        System.out.print("Withdraw Amount: ");
-                        bank.withdraw(sc.nextDouble());
-                    }
-                    break;
+            System.out.print("Initial Balance: ");
+            double bal = sc.nextDouble();
 
-                case 4:
-                    if (bank.accountExists())
-                        bank.checkBalance();
-                    break;
+            Account a = new Account(no, name, bal);
+            bank.create(a);
+        }
 
-                case 5:
-                    System.out.println("Thank You!");
-                    break;
+        System.out.println("\n--- Deposit Money ---");
+        System.out.print("Account Number: ");
+        int no = sc.nextInt();
 
-                default:
-                    System.out.println("Invalid Choice");
-            }
+        System.out.print("Deposit Amount: ");
+        double amt = sc.nextDouble();
 
-        } while (choice != 5);
+        bank.deposit(no, amt);
 
         sc.close();
     }
