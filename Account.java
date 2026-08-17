@@ -1,10 +1,8 @@
 public class Account {
-    int accNo;
     String name;
-    double balance;
+    int balance;
 
-    Account(int accNo, String name, double balance) {
-        this.accNo = accNo;
+    Account(String name, int balance) {
         this.name = name;
         this.balance = balance;
     }
